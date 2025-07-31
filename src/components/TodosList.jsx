@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { removetodo, updataTodo } from '../Features/todo/todoSlice';
+import { removetodo, updataTodo,complate } from '../Features/todo/todoSlice';
 import { RiDeleteBin6Fill } from "react-icons/ri";
 import { CiEdit } from "react-icons/ci";
 import { LuSaveAll } from "react-icons/lu";
+import { GiCheckMark } from "react-icons/gi";
 
 function TodosList() {
   const todos = useSelector(state => state.todos);
@@ -11,6 +12,7 @@ function TodosList() {
 
     const [EditId ,setEditId] = useState(null)
     const [EditTaskId, setTaskId] = useState('')
+
 
     const HandleEdit = (todo) => {
         setEditId(todo.id)
@@ -22,7 +24,9 @@ function TodosList() {
       setEditId(null)
       setTaskId('')
     } 
- 
+    const HandleCheck = (todo) => {
+          dispatch(complate({id: todo.id}))
+    }
 
   return (
     <div className='mx-auto max-w-xl '>
@@ -35,15 +39,22 @@ function TodosList() {
               className='shadow-lg px-4 py-3 flex justify-between bg-gradient-to-r from-white-500 to-purple-600 text-white rounded-md transition duration-75'
             >
                 
-             <div className='flex gap-4'>
-              <input type="checkbox" name="" id="" />
+          <div className='flex gap-4 justify-center items-center'>
+  
+            <button
+              onClick={() => HandleCheck(todo)}
+              className={`h-4 w-4 rounded-full  border-2 border-black flex items-center justify-center ${
+              todo.completed ? 'bg-green-400' : ''
+                  }`}>
+               {todo.completed && <GiCheckMark />}
+            </button>
                {EditId === todo.id ? (
                 <input 
                 value={EditTaskId}
                 onChange={(e) => setTaskId(e.target.value)}
                 type="text" placeholder={todo.task} />
                ) : (
-                <span className=' text-lg'>{todo.task}</span>
+                <span  className='text-lg'>{todo.task}</span>
               )}
              </div>
 
