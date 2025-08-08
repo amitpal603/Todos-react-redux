@@ -3,7 +3,7 @@ import { createSlice, nanoid } from '@reduxjs/toolkit';
 export const TodoSlice = createSlice({
   name: 'todo',
   initialState: {
-    todos: [{ id: 1, task: "Add Another task", completed: false }]
+    todos: []
   },
   reducers: {
     addTodo: (state, action) => {
@@ -19,7 +19,7 @@ export const TodoSlice = createSlice({
         todo.task = action.payload.task;
       }
     },
-    complate: (state, action) => {
+    complete: (state, action) => {
       const todo = state.todos.find((todo) => todo.id === action.payload.id);
       if (todo) {
         todo.completed = !todo.completed;
@@ -28,5 +28,5 @@ export const TodoSlice = createSlice({
   }
 });
 
-export const { addTodo, removetodo, updataTodo, complate } = TodoSlice.actions;
+export const { addTodo, removetodo, updataTodo, complete } = TodoSlice.actions;
 export default TodoSlice.reducer;

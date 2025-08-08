@@ -1,6 +1,7 @@
 import React from 'react'
 import TodoInput from './components/TodoInput'
 import TodosList from './components/TodosList'
+import Delete from './ExtraFeature/Delete'
 
 function App() {
   return (
