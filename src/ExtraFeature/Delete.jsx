@@ -23,7 +23,7 @@ function Delete({ isOpen, todo, del, setIs }) {
         className='bg-white p-6 rounded-lg shadow-lg max-w-md w-full flex flex-col gap-6'
       >
         <p className='text-center font-semibold text-lg'>
-          Are you sure you want to{' '}
+          Are you sure you want to
           <span className='text-red-500 font-bold'>delete</span> this todo?
         </p>
 
